@@ -1,0 +1,13 @@
+{
+  "name": "pipe-capacity-calculator",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate:lookups": "node scripts/generate-lookups.mjs",
+    "build": "node scripts/generate-lookups.mjs && node scripts/build.mjs",
+    "test": "node scripts/generate-lookups.mjs --check && node scripts/build.mjs --check && node --test",
+    "serve": "python3 -m http.server 8000"
+  },
+  "engines": {"node": ">=20"}
+}

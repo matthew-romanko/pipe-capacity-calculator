@@ -1,0 +1,12 @@
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+# Do not commit workbook reference copies or student data:
+reference/
+*.xlsx
+*.xlsm
+
+# Generated browser screenshots
+desktop-preview.png
+mobile-preview.png

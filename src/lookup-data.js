@@ -1,0 +1,72 @@
+// Generated from data/workbook-lookups.json — do not edit by hand.
+export default {
+  "source": "Spreadsheet reference, Calculator!J4:L36",
+  "pipeSizesInches": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    10,
+    12,
+    14,
+    15,
+    16,
+    18,
+    24,
+    30,
+    36
+  ],
+  "comparisonPipeSizesInches": [
+    4,
+    5,
+    6,
+    8,
+    10,
+    12,
+    14,
+    15,
+    16,
+    18,
+    24,
+    30,
+    36
+  ],
+  "materials": [
+    "Single wall CPT",
+    "Dual Wall Pipe",
+    "Clay or Concrete",
+    "PVC",
+    "Metal Currugated 3\"-30\""
+  ],
+  "roughness": {
+    "Single wall CPT": {
+      "8": 0.016,
+      "10": 0.017,
+      "2-6": 0.015,
+      "12-16": 0.018,
+      "18-36": 0.02
+    },
+    "Dual Wall Pipe": 0.012,
+    "Clay or Concrete": 0.013,
+    "PVC": 0.01,
+    "Metal Currugated 3\"-30\"": 0.025
+  },
+  "drainageCoefficientsInchesPerDay": [
+    0.375,
+    0.5,
+    0.75,
+    1,
+    1.5,
+    2
+  ],
+  "metricDrainageCoefficientsCmPerDay": [
+    1,
+    1.5,
+    2,
+    3,
+    4,
+    5
+  ]
+};
