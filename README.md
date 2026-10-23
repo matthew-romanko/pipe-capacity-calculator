@@ -32,6 +32,16 @@ Node.js 20 or newer is recommended. The webpage can also run as a local file bec
 
 The calculator runs in the browser; it does not use a backend, database, or accounts. Entered project information is not transmitted to the host by the app.
 
+## Accessibility foundation (development branch)
+
+The application aims for WCAG 2.1 Level AA and future university review, but **has not been certified as accessible**. See [`ACCESSIBILITY.md`](ACCESSIBILITY.md) for the development checklist and release gate.
+
+The first accessibility pass adds a keyboard-visible skip link, unit-aware input labels, field-level validation messages linked with `aria-describedby`, `aria-invalid`, a polite result summary announced when a change is committed, table captions and row headers, and more visible focus styles. It does not change any hydraulic formulas or lookup data.
+
+**Checks:** Run `npm test` for calculation and HTML structure regressions. If Python Playwright and Chromium are available, `python scripts/browser-check.py` runs a browser smoke check for interactive controls, keyboard behavior, and 320-pixel layout. Automated tests are not equivalent to a WCAG audit.
+
+**Before an official release:** manually test keyboard-only use; NVDA + Chrome/Firefox; VoiceOver + Safari; 200% text zoom; 400% browser zoom; and an accessibility checker such as axe-core. Record and fix any findings and follow institutional accessibility review procedures.
+
 ## Scope
 
 Preserves a single-section pipe capacity worksheet: project fields; pipe material, size, and slope; Manning hydraulic values; US customary drainage coefficients; pipe comparison table; and metric outputs. This prototype does not perform rainfall-event estimation or calculate a whole-field network.

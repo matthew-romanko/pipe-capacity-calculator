@@ -2,7 +2,7 @@
 
 **Project:** Pipe Capacity Calculator (neutral development preview)  
 **Working branch:** `dev`  
-**Minimum target:** WCAG 2.1 Level AA and Ohio State Minimum Digital Accessibility Standards (MDAS), subject to review by the university's accessibility team before official release.  
+**Minimum target:** WCAG 2.1 Level AA; confirm any additional institutional accessibility standards with the relevant accessibility team before official release.  
 **Working principle:** No change is considered complete until its accessibility impact has been evaluated.
 
 ## Definition of done for interface changes
@@ -35,20 +35,23 @@
 4. **Responsive**: Check mobile portrait, 200% text resize and 400% browser zoom; avoid loss of content and controls.
 5. **Regression**: Run `npm test` to confirm accessibility changes have not changed the hydraulic calculations.
 
-## Release gate for an official Ohio State application
+## Release gate for an official institutional application
 
-- Follow the Ohio State Digital Accessibility Policy and MDAS in effect at release time.
-- Work with the relevant unit Digital Accessibility Coordinator / Digital Accessibility Services to determine the product's risk classification and required evaluation (which may include a full manual review by an approved evaluator).
+- Follow the applicable institutional digital accessibility policies in effect at release time.
+- Work with the responsible accessibility coordinator or accessibility services office to determine the product's risk classification and required evaluation (which may include a full manual review by an approved evaluator).
 - Resolve documented accessibility barriers before announcing university approval or compliance.
 - Check any separate university websites/branding/governance requirements before official university publication.
 
 ## Reference links (review periodically)
 
-- Ohio State Digital Accessibility: https://ap.osu.edu/digital-accessibility
-- Ohio State Digital Accessibility Services: https://it.osu.edu/das/title-ii-and-you
-- Ohio State BUX accessibility guidance: https://bux.osu.edu/about/accessibility/
-- Ohio State University Websites Standards: https://marketing.osu.edu/websites-policy/standards
 - W3C WCAG 2.1: https://www.w3.org/TR/WCAG21/
 - W3C WCAG 2.2: https://www.w3.org/TR/WCAG22/
 
 Last prepared: October 23, 2026. This is a development checklist, not a formal accessibility audit or compliance certification.
+
+## Foundation implementation status — initial dev update
+
+- Added: skip link, more explicit numeric field labels, inline errors linked through `aria-describedby` and `aria-invalid`, restrained live result summary, table captions/row headers, visible keyboard focus, and adjustments to small-text contrast.
+- Verified automatically: 10 Node tests (`npm test`) and an interactive browser smoke test.
+- Not yet done: comprehensive axe scan; NVDA and VoiceOver manual passes; complete 200% text/400% zoom testing across browsers; institutional manual evaluation and release authorization.
+- Calculation behavior and reference lookups intentionally unchanged.
