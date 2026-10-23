@@ -44,7 +44,7 @@ The first accessibility pass adds a keyboard-visible skip link, unit-aware input
 
 ## Scope
 
-Preserves a single-section pipe capacity worksheet: project fields; pipe material, size, and slope; Manning hydraulic values; US customary drainage coefficients; pipe comparison table; and metric outputs. This prototype does not perform rainfall-event estimation or calculate a whole-field network.
+Preserves a single-section pipe capacity worksheet: project fields; pipe material, size, and slope; Manning hydraulic values; drainage coefficients; and the pipe comparison table. A unit selector switches between US customary and metric representations of the same section, replacing the old duplicated metric sections. This prototype does not perform rainfall-event estimation or calculate a whole-field network.
 
 ## Future release
 
@@ -57,3 +57,14 @@ The responsive stylesheet gives phone users larger controls, a short jump-naviga
 The root `index.html` is the local browser entry point. GitHub Pages uses `docs/index.html`; run `npm run build` after editing HTML/CSS to synchronize the public copy. Check `npm test` before committing to `dev`. GitHub Pages on `main` stays unchanged until reviewed changes are merged.
 
 Manual checks: try a phone-sized window (320–430px), use the page without a mouse, tab into each comparison table and press an arrow key to pan, and verify pipe material/size/slope changes update results. No university marks or individual researcher names are included in this development preview.
+
+## Measurement unit toggle (v0.3 development branch)
+
+The calculator now has a keyboard-operable Imperial (US) / Metric (SI) selector. The same two result tables are used for both unit systems. Pipe diameter labels, area, velocity, discharge, and hydraulic dimensions change to the selected units; **slope stays in percent and the Manning calculations are unchanged**.
+
+- Switching units **does not change the actual selected pipe or contributing area**. The entered area is stored without intermediate display rounding and converted in place when switching systems. For an entered 22.9 acres, metric mode shows approximately 9.267503 hectares; switching back restores 22.9 acres.
+- The metric drainage table retains the Excel workbook's **12 rows**: six coefficients converted from inches/day and six defined in centimeters/day. The US table retains its original six rows. All worksheet formula constants remain unchanged, including its approximate acres/hectare factors.
+- The original metric area input (20 hectares) was independent of the 22.9-acre US input. With the unified area field, the same physical area is carried across modes, so default metric required-Q values will differ from Excel's separate 20-hectare default.
+- Root files are the editable source; run `npm run build` to update `dist/` and the GitHub Pages `docs/` site. Run `npm test` and, where Playwright and Chromium are installed, `python scripts/browser-check.py` before committing.
+
+The update keeps neutral development branding. Validation against more Excel scenarios and formal accessibility review are still pending.

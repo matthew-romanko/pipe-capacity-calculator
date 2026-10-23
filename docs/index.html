@@ -18,21 +18,29 @@
         <div class="brand-wordmark">DRAINAGE DESIGN TOOLS</div>
         <div class="identity"><span class="identity-mark" aria-hidden="true">PC</span><div class="identity-copy"><span class="identity-line">SINGLE-SECTION HYDRAULIC CALCULATIONS</span><span class="identity-sub">Pipe Capacity Calculator</span></div></div>
       </div>
-      <span class="version">Development preview <span class="version-sep">·</span> v0.2 mobile</span>
+      <span class="version">Development preview <span class="version-sep">·</span> v0.3 units</span>
     </div>
   </header>
 
   <main class="page-width" id="calculator-main" tabindex="-1">
     <div class="intro">
       <div><p class="eyebrow">WEB CALCULATOR · DEVELOPMENT PREVIEW</p><h1>Subsurface Drainage<br class="desktop-only"> Pipe Capacity Calculator</h1><p class="lede">Enter values in the yellow fields. All other values calculate automatically using the original worksheet workflow.</p></div>
-      <div class="key"><span class="swatch" aria-hidden="true"></span><span>Editable fields</span></div>
+      <div class="intro-controls">
+        <fieldset class="unit-toggle">
+          <legend>Measurement units</legend>
+          <div class="unit-options">
+            <label class="unit-choice"><input type="radio" name="units" value="us" checked><span>Imperial (US)</span></label>
+            <label class="unit-choice"><input type="radio" name="units" value="metric"><span>Metric (SI)</span></label>
+          </div>
+        </fieldset>
+        <div class="key"><span class="swatch" aria-hidden="true"></span><span>Yellow fields are editable</span></div>
+      </div>
     </div>
 
     <nav class="section-jump" aria-label="Jump to calculator sections">
       <a href="#pipe-section">Pipe setup</a>
       <a href="#us-section">Drainage coefficients</a>
       <a href="#sizes-section">Pipe capacities</a>
-      <a href="#si-section">Metric calculations</a>
     </nav>
 
     <div id="calculation-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
@@ -55,54 +63,40 @@
         <div class="pipe-inputs">
           <label class="field"><span>Pipe material</span><select id="pipe-material" class="yellow-input"></select></label>
           <div class="two-fields">
-            <label class="field"><span>Pipe Size <span class="sr-only">(inches)</span></span><span class="input-with-unit"><select id="pipe-size" class="yellow-input"></select><span class="unit" aria-hidden="true">inches</span></span></label>
+            <label class="field"><span>Pipe Size <span class="sr-only" id="pipe-size-label-unit">(inches)</span></span><span class="input-with-unit"><select id="pipe-size" class="yellow-input"></select><span class="unit" id="pipe-size-unit" aria-hidden="true">inches</span></span></label>
             <label class="field"><span>Slope <span class="sr-only">(percent)</span></span><span class="input-with-unit"><input id="slope" class="yellow-input" type="number" min="0" step="any" inputmode="decimal" value="0.1" required><span class="unit" aria-hidden="true">%</span></span><span id="slope-error" class="field-error" hidden></span></label>
           </div>
           <div class="output-rows" aria-label="Pipe hydraulic results">
-            <div class="out-row"><span>Velocity</span><strong><output aria-live="off" id="velocity">—</output> <small>ft./sec</small></strong></div>
+            <div class="out-row"><span>Velocity</span><strong><output aria-live="off" id="velocity">—</output> <small id="velocity-unit">ft/s</small></strong></div>
             <div class="out-row assessment-row"><span>Velocity assessment</span><output aria-live="off" id="assessment" class="assessment">—</output></div>
-            <div class="out-row"><span>Capacity (Q)</span><strong><output aria-live="off" id="capacity">—</output> <small>cfs</small></strong></div>
+            <div class="out-row"><span>Capacity (Q)</span><strong><output aria-live="off" id="capacity">—</output> <small id="capacity-unit">cfs</small></strong></div>
             <div class="out-row"><span>Selected pipe &amp; size</span><output aria-live="off" id="pipe-description">—</output></div>
             <div class="out-row"><span>Manning's roughness coeff (n) used</span><strong><output aria-live="off" id="manning-n">—</output></strong></div>
           </div>
         </div>
         <div class="hydraulics">
           <h3>Pipe hydraulic properties</h3>
-          <div class="property-row"><span>Pipe cross-sectional-Area</span><strong><output aria-live="off" id="cross-area">—</output> <small>sq. ft.</small></strong></div>
-          <div class="property-row"><span>Wetted Perimeter</span><strong><output aria-live="off" id="perimeter">—</output> <small>ft.</small></strong></div>
-          <div class="property-row"><span>Hydraulic Radius</span><strong><output aria-live="off" id="radius">—</output> <small>ft.</small></strong></div>
-          <div class="capacity-card"><span>PIPE CAPACITY (Q)</span><div><output aria-live="off" id="capacity-large">—</output><small>cfs</small></div><p>Calculated for full-pipe flow at the entered slope.</p></div>
+          <div class="property-row"><span>Pipe cross-sectional-Area</span><strong><output aria-live="off" id="cross-area">—</output> <small id="cross-area-unit">sq ft</small></strong></div>
+          <div class="property-row"><span>Wetted Perimeter</span><strong><output aria-live="off" id="perimeter">—</output> <small id="perimeter-unit">ft</small></strong></div>
+          <div class="property-row"><span>Hydraulic Radius</span><strong><output aria-live="off" id="radius">—</output> <small id="radius-unit">ft</small></strong></div>
+          <div class="capacity-card"><span>PIPE CAPACITY (Q)</span><div><output aria-live="off" id="capacity-large">—</output><small id="capacity-large-unit">cfs</small></div><p>Calculated for full-pipe flow at the entered slope.</p></div>
         </div>
       </div>
       
     </section>
 
     <section class="panel" id="us-section" aria-labelledby="us-title">
-      <div class="section-heading"><span class="section-number">03</span><h2 id="us-title">Drainage coefficient calculations</h2><span class="section-tag">US CUSTOMARY</span></div>
-      <div class="area-strip"><div><strong>Required Q cfs</strong><span>To drain a specified area</span></div><label class="field inline-area"><span>Drainage area <span class="sr-only">(acres)</span></span><span class="input-with-unit"><input id="area-acres" type="number" class="yellow-input" min="0" step="any" inputmode="decimal" value="22.9" required><span class="unit" aria-hidden="true">acres</span></span><span id="area-acres-error" class="field-error" hidden></span></label></div>
-      <div class="table-scroll drainage-table-scroll"><table class="data-table"><caption class="sr-only">US customary drainage coefficients in inches per day, acres drained, and required discharge in cubic feet per second.</caption><thead><tr><th scope="col">Drainage Coefficient</th><th scope="col" class="numeric">Acres Drained</th><th scope="col" class="numeric">Required Q cfs</th></tr></thead><tbody id="drainage-us-rows"></tbody></table></div>
-      <p class="table-help">The acres drained column uses the selected pipe capacity; required Q uses the yellow drainage-area input.</p>
+      <div class="section-heading"><span class="section-number">03</span><h2 id="us-title">Drainage coefficient calculations</h2><span class="section-tag" id="drainage-unit-tag">IMPERIAL (US)</span></div>
+      <div class="area-strip"><div><strong id="required-q-label">Required Q (cfs)</strong><span>To drain a specified area</span></div><label class="field inline-area"><span>Drainage area <span class="sr-only" id="drainage-area-label-unit">(acres)</span></span><span class="input-with-unit"><input id="drainage-area" type="number" class="yellow-input" min="0" step="any" inputmode="decimal" value="22.9" required><span class="unit" id="drainage-area-unit" aria-hidden="true">acres</span></span><span id="drainage-area-error" class="field-error" hidden></span></label></div>
+      <div class="table-scroll drainage-table-scroll"><table class="data-table"><caption id="drainage-table-caption" class="sr-only">Drainage coefficients in inches per day, acres drained, and required discharge in cubic feet per second.</caption><thead><tr><th scope="col" id="drainage-col-coeff">Drainage coefficient (in/day)</th><th scope="col" class="numeric" id="drainage-col-area">Acres drained</th><th scope="col" class="numeric" id="drainage-col-flow">Required Q (cfs)</th></tr></thead><tbody id="drainage-rows"></tbody></table></div>
+      <p class="table-help" id="drainage-table-help">The area drained column uses the selected pipe capacity; required Q uses the yellow drainage-area input.</p>
     </section>
 
     <section class="panel" id="sizes-section" aria-labelledby="sizes-title">
-      <div class="section-heading"><span class="section-number">04</span><h2 id="sizes-title">Pipe sizes and capacity</h2><span class="section-tag">US CUSTOMARY</span></div>
-      <p class="section-note" id="capacity-comparison-caption">Pipe Sizes and capacity at 0.1% slope for Single wall CPT</p>
-      <p class="scroll-tip" id="us-scroll-tip">Scroll horizontally to view all pipe sizes.</p>
-      <div class="table-scroll comparison-scroll" role="region" aria-label="US customary pipe capacities, horizontally scrollable" aria-describedby="us-scroll-tip" tabindex="0"><table class="data-table comparison-table"><caption id="us-comparison-table-caption" class="sr-only">Pipe size comparison in inches and cubic feet per second.</caption><thead><tr><th scope="col">Size (in)</th><th scope="col" class="numeric">Q (CFS)</th><th scope="col">Size (in)</th><th scope="col" class="numeric">Q (CFS)</th></tr></thead><tbody id="pipe-comparison-rows"></tbody></table></div>
-    </section>
-
-
-    <section class="panel" id="si-section" aria-labelledby="si-title">
-      <div class="section-heading"><span class="section-number">05</span><h2 id="si-title">Calculations in SI Units</h2><span class="section-tag">METRIC</span></div>
-      <div class="area-strip"><div><strong>Required Q Liters/sec (lps)</strong><span>To drain a specified area</span></div><label class="field inline-area"><span>Drainage area <span class="sr-only">(hectares)</span></span><span class="input-with-unit"><input id="area-hectares" type="number" class="yellow-input" min="0" step="any" inputmode="decimal" value="20" required><span class="unit" aria-hidden="true">ha</span></span><span id="area-hectares-error" class="field-error" hidden></span></label></div>
-      <div class="table-scroll drainage-table-scroll"><table class="data-table"><caption class="sr-only">Metric drainage coefficients in centimeters per day, hectares drained, and required discharge in liters per second.</caption><thead><tr><th scope="col">Drainage Coefficient</th><th scope="col" class="numeric">ha Drained</th><th scope="col" class="numeric">Required Q (lps)</th></tr></thead><tbody id="metric-rows"></tbody></table></div>
-    </section>
-
-    <section class="panel" id="metric-sizes-section" aria-labelledby="metric-sizes-title">
-      <div class="section-heading"><span class="section-number">06</span><h2 id="metric-sizes-title">Pipe sizes and capacity</h2><span class="section-tag">METRIC</span></div>
-      <p class="section-note" id="metric-comparison-caption">Pipe Sizes and capacity at 0.1% slope for Single wall CPT</p>
-      <p class="scroll-tip" id="metric-scroll-tip">Scroll horizontally to view all pipe sizes.</p>
-      <div class="table-scroll comparison-scroll" role="region" aria-label="Metric pipe capacities, horizontally scrollable" aria-describedby="metric-scroll-tip" tabindex="0"><table class="data-table comparison-table"><caption id="metric-comparison-table-caption" class="sr-only">Pipe size comparison in centimeters and liters per second.</caption><thead><tr><th scope="col">Size (cm)</th><th scope="col" class="numeric">Q (lps)</th><th scope="col">Size (cm)</th><th scope="col" class="numeric">Q (lps)</th></tr></thead><tbody id="metric-comparison-rows"></tbody></table></div>
+      <div class="section-heading"><span class="section-number">04</span><h2 id="sizes-title">Pipe sizes and capacity</h2><span class="section-tag" id="comparison-unit-tag">IMPERIAL (US)</span></div>
+      <p class="section-note" id="capacity-comparison-caption">Pipe sizes and capacity at 0.1% slope for Single wall CPT</p>
+      <p class="scroll-tip" id="comparison-scroll-tip">Scroll horizontally to view all pipe sizes.</p>
+      <div class="table-scroll comparison-scroll" role="region" aria-label="Pipe size capacities, horizontally scrollable" aria-describedby="comparison-scroll-tip" tabindex="0"><table class="data-table comparison-table"><caption id="comparison-table-caption" class="sr-only">Pipe size comparison in inches and cubic feet per second.</caption><thead><tr><th scope="col" id="size-left">Size (in)</th><th scope="col" class="numeric" id="flow-left">Q (cfs)</th><th scope="col" id="size-right">Size (in)</th><th scope="col" class="numeric" id="flow-right">Q (cfs)</th></tr></thead><tbody id="pipe-comparison-rows"></tbody></table></div>
     </section>
 
     <footer class="footer"><p><strong>Development preview — not a final design reference.</strong> Validate calculations and field assumptions independently before engineering or installation decisions.</p><p class="footer-small">Reproduces a spreadsheet-based Manning calculation, with full-pipe flow and nominal pipe diameters. No user data is transmitted to a server.</p></footer>

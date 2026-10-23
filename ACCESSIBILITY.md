@@ -66,3 +66,13 @@ Last prepared: October 23, 2026. This is a development checklist, not a formal a
 - Browser layout checks covered 320, 375, 390, 430, 768, and 1280 CSS pixel widths; no page-wide horizontal overflow was observed.
 
 **Still required before OSU release:** manual screen-reader testing on Windows and mobile, keyboard-only walkthrough at 200% and 400% zoom, accessibility review of table navigation, and a complete WCAG audit. Automated and scripted browser checks are not a certification.
+
+## Unified unit selector (v0.3 development branch)
+
+- The unit selector uses a native `fieldset`, `legend` and grouped radio inputs, including visible keyboard focus. Changing units should be possible with arrow keys while focus remains on the selector.
+- Pipe size and drainage-area accessible labels change to match the displayed units. Result values, the live calculation summary, table captions and column headers also use the selected units.
+- One pair of semantic data tables replaces the parallel US/metric tables. Keyboard-accessible horizontal scrolling remains on the size-comparison table.
+- The original full-precision drainage area is maintained across unit changes until explicitly edited; only the on-screen input is rounded. Metric-view coefficients include both original worksheet groups (converted inches/day and centimeters/day).
+- Checked in an automated Chromium browser at 320–1280 CSS pixels without page-wide overflow; switching back/forth, keyboard radio selection, form errors and live output updates also passed scripted checks. These checks do not establish WCAG compliance.
+
+**Manual checks still required:** NVDA + browser and VoiceOver + Safari, magnification/zoom, announcements during rapid selection changes, and detailed review of the unified metric drainage table's 12 coefficients.

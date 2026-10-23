@@ -143,3 +143,30 @@
   .comparison-scroll{border:0;overflow:visible}
   .comparison-scroll .comparison-table{min-width:0}
 }
+
+/* v0.3: one accessible measurement-unit control, one set of result tables. */
+.intro-controls{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex:none}
+.unit-toggle{margin:0;padding:0;border:0;min-width:0}
+.unit-toggle legend{font-size:12px;line-height:1.5;font-weight:750;margin-bottom:6px;color:#324953}
+.unit-options{display:flex;gap:4px;padding:4px;background:#e7eff0;border:1px solid #bacbd0;border-radius:11px}
+.unit-choice{position:relative;display:flex;align-items:center;justify-content:center;min-height:44px;cursor:pointer}
+.unit-choice input{position:absolute;opacity:0;inline-size:1px;block-size:1px}
+.unit-choice span{display:flex;align-items:center;justify-content:center;padding:10px 14px;min-height:44px;border-radius:7px;font-size:13px;font-weight:700;color:#273e4a;white-space:nowrap}
+.unit-choice input:checked+span{background:#fff;color:#183f50;box-shadow:0 1px 5px rgba(20,50,60,.15)}
+.unit-choice input:focus-visible+span{outline:3px solid #163e57;outline-offset:2px}
+.unit-choice:hover span{background:#f7fafb}
+.unit-choice input:checked:hover+span{background:#fff}
+.intro-controls .key{margin:0}
+@media(max-width:720px){
+  .intro-controls{align-items:stretch;margin-top:14px;gap:8px}
+  .unit-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .unit-choice span{width:100%;padding:10px 8px;font-size:13px}
+  .section-jump{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .section-jump a{padding:9px 5px}
+  .intro-controls .key{margin:2px 0 0}
+}
+@media print{
+  .unit-toggle{break-inside:avoid}
+  .unit-options{background:#fff}
+  .unit-choice:not(:has(input:checked)){display:none}
+}
