@@ -49,3 +49,11 @@ Preserves a single-section pipe capacity worksheet: project fields; pipe materia
 ## Future release
 
 Reintroduce any approved institutional branding and required original author/rights-holder attribution **only after confirming publication and licensing requirements**. Do not imply official endorsement while this is a personal development prototype.
+
+## Mobile interface preview (dev / v0.2)
+
+The responsive stylesheet gives phone users larger controls, a short jump-navigation menu, compact project fields, a prominent pipe-capacity summary, and scrollable pipe-size comparison tables. The full Excel-compatible calculation flow is unchanged.
+
+The root `index.html` is the local browser entry point. GitHub Pages uses `docs/index.html`; run `npm run build` after editing HTML/CSS to synchronize the public copy. Check `npm test` before committing to `dev`. GitHub Pages on `main` stays unchanged until reviewed changes are merged.
+
+Manual checks: try a phone-sized window (320–430px), use the page without a mouse, tab into each comparison table and press an arrow key to pan, and verify pipe material/size/slope changes update results. No university marks or individual researcher names are included in this development preview.

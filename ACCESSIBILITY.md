@@ -55,3 +55,14 @@ Last prepared: October 23, 2026. This is a development checklist, not a formal a
 - Verified automatically: 10 Node tests (`npm test`) and an interactive browser smoke test.
 - Not yet done: comprehensive axe scan; NVDA and VoiceOver manual passes; complete 200% text/400% zoom testing across browsers; institutional manual evaluation and release authorization.
 - Calculation behavior and reference lookups intentionally unchanged.
+
+## Responsive interface update (v0.2 development branch)
+
+- Four labeled section-jump links help keyboard, touch, and screen-reader users navigate the long single-section worksheet.
+- Main pipe material, diameter, slope, and area controls use at least 48px tall fields at phone widths and 16px input text to avoid unwanted automatic zoom on iOS.
+- Drainage coefficient tables retain native HTML table structure and explicitly wrap long column labels at narrow widths.
+- Pipe comparison tables retain headers and captions and use separate, labeled, keyboard-focusable scroll regions, with a visible horizontal-scroll hint on small screens.
+- Semantic table data, all numeric inputs, calculated outputs, and the original worksheet workflow are preserved.
+- Browser layout checks covered 320, 375, 390, 430, 768, and 1280 CSS pixel widths; no page-wide horizontal overflow was observed.
+
+**Still required before OSU release:** manual screen-reader testing on Windows and mobile, keyboard-only walkthrough at 200% and 400% zoom, accessibility review of table navigation, and a complete WCAG audit. Automated and scripted browser checks are not a certification.

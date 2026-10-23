@@ -35,3 +35,20 @@ test('results have a concise live status, and tables have captions and row heade
   assert.match(source, /if \(isRowHeader\) td.scope = 'row'/);
   assert.match(source, /announce\(`Pipe capacity/);
 });
+
+test('long calculator has an accessible section jump menu',()=>{
+  assert.match(html, /<nav class="section-jump" aria-label="Jump to calculator sections">/);
+  for (const id of ['pipe-section','us-section','sizes-section','si-section']) {
+    assert.match(html, new RegExp(`href="#${id}"`));
+    assert.match(html, new RegExp(`id="${id}" aria-labelledby=`));
+  }
+});
+
+test('comparison tables expose keyboard-scrollable labeled regions and visual hints',()=>{
+  for (const type of ['us','metric']) {
+    assert.match(html, new RegExp(`class="table-scroll comparison-scroll" role="region" aria-label="[^"]+" aria-describedby="${type}-scroll-tip" tabindex="0"`));
+  }
+  assert.match(css, /\.comparison-scroll:focus-visible|\.table-scroll:focus-visible/);
+  assert.match(css, /\.comparison-scroll \.comparison-table\{min-width:450px\}/);
+  assert.match(css, /@media \(max-width:720px\)/);
+});
